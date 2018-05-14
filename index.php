@@ -3,6 +3,7 @@
 		<?php while ( have_posts() ) { the_post(); ?>
 
 			<div class="container-fluid">
+				<h1>Bootstarter 4 WordPress theme</h1>
 				<div class="row">
 					<div class="col-sm">
 						<div class="entry-content">
