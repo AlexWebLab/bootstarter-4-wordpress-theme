@@ -13,7 +13,7 @@
     <header id="masthead" class="site-header">
         <nav class="navbar navbar-expand-sm navbar-light bg-light" role="navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Logo</a>
+                <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( get_bloginfo('name') ); ?>"><?php esc_html_e( get_bloginfo('name') ); ?></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary_navigation" aria-controls="primary_navigation" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

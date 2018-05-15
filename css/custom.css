@@ -9,6 +9,16 @@ body, a {
     -webkit-transition: all 0.25s ease 0s;
     transition: all 0.25s ease 0s;
 }
+.bg-cover {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.bg-contain {
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 /*--------------------------------------*/
 /* MEDIA QUERIES
 /*--------------------------------------*/

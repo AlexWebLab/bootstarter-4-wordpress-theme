@@ -30,7 +30,7 @@ function horizontal_tuning() { // launched only if there is an horizontal resize
 
 // "show window for development" functions
 function show_window_width_for_development_init() {
-    $('body').append('<div id="window_width" style="position:absolute;bottom:0;right:0;z-index:9999;font-size:0.75rem;background:#fff;"></div>');
+    $('body').append('<div id="window_width" style="position:fixed;bottom:0;right:0;z-index:9999;font-size:0.75rem;background:#fff;"></div>');
 }
 function show_window_width_for_development() {
     $('#window_width').html(get_breakpoint().toUpperCase()+'['+$(window).width()+'px]');
