@@ -33,4 +33,4 @@
         </nav>
     </header><!-- #masthead -->
 
-    <main id="main" class="site-main transition" role="main">
+    <div id="content" class="site-content">

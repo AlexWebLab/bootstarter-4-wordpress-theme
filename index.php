@@ -2,6 +2,7 @@
 	<?php if ( have_posts() ) { ?>
 		<?php while ( have_posts() ) { the_post(); ?>
 
+		<main id="main" class="site-main">
 			<div class="container-fluid">
 				<h1>Bootstarter 4 WordPress theme</h1>
 				<div class="row">
@@ -25,6 +26,7 @@
 					</div>
 				</div>
 			</div>
+		</main><!-- #main -->
 
         <?php } // end while have_posts() ?>
     <?php } // end if have_posts() ?>

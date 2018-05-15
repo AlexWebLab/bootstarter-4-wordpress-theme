@@ -1,4 +1,4 @@
-	</main>
+	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
 		<div class="container-fluid">
