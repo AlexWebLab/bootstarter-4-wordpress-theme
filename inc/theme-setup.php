@@ -28,6 +28,15 @@ function custom_image_sizes() {
 
 // custom excerpt lenght
 function custom_excerpt_length( $length ) {
-	return 16;
+	return 20;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+// remove margin-top on the admin bar
+add_action('get_header', 'remove_admin_login_header');
+function remove_admin_login_header() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+}
+
+//Add Really Simple Captcha to Contact Form 7
+add_filter( 'wpcf7_use_really_simple_captcha', '__return_true' );
