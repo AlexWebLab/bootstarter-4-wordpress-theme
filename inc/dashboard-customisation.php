@@ -2,12 +2,37 @@
 // Remove Dashboard Menu Items
 function custom_menu_page_removing() {
 	//remove_menu_page( 'edit.php' ); 			//Posts
-	//remove_menu_page( 'edit-comments.php' ); 	//Comments
-	//remove_menu_page( 'tools.php' ); 			//Tools
+	remove_menu_page( 'edit-comments.php' ); 	//Comments
+	remove_menu_page( 'tools.php' ); 			//Tools
 	if ( !current_user_can('manage_options') ) { // just for editors
 		//remove_submenu_page( 'themes.php', 'themes.php' );
 		//remove_submenu_page( 'themes.php', 'widgets.php' );
 	}
+}
+
+// Remove dashboard widgets
+function remove_dashboard_widgets() {
+    global $wp_meta_boxes;
+
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+	// bbpress
+	unset($wp_meta_boxes['dashboard']['normal']['core']['bbp-dashboard-right-now']);
+	// yoast seo
+	unset($wp_meta_boxes['dashboard']['normal']['core']['yoast_db_widget']);
+	// gravity forms
+	unset($wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard']);
+
+}
+if (!current_user_can('manage_options')) {
+    add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 }
 
 // customise the login
@@ -87,3 +112,29 @@ function add_editor_extra_capabilities() {
 	}
 }
 add_action( 'admin_init', 'add_editor_extra_capabilities' );
+
+// add user manager role and remove some defaults
+remove_role( 'admin_editor' );
+$editor_role_set = get_role( 'editor' )->capabilities;
+add_role(
+    'admin_editor',
+    __( 'Admin', 'mandarinmatrix' ),
+	$editor_role_set
+);
+$role = get_role( 'admin_editor' );
+$role->add_cap( 'is_admin_editor' );
+$role->add_cap( 'edit_users' );
+$role->add_cap( 'delete_users' );
+$role->add_cap( 'create_users' );
+$role->add_cap( 'list_users' );
+$role->add_cap( 'remove_users' );
+$role->add_cap( 'add_users' );
+function add_admin_editor_js($hook) {
+	if ( current_user_can('is_admin_editor') ) {
+        wp_enqueue_script('my_custom_script', get_stylesheet_directory_uri() . '/js/admin_editor.js');
+    }
+}
+add_action('admin_enqueue_scripts', 'add_admin_editor_js');
+remove_role( 'subscriber' );
+remove_role( 'contributor' );
+remove_role( 'author' );
