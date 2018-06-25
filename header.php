@@ -1,17 +1,30 @@
+<?php
+/**
+ * The header for our theme
+ *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package bootstarter4
+ */
+
+?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-    <a class="sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'bootstarter' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bootstarter4' ); ?></a>
 
-    <header id="masthead" class="site-header">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light" role="navigation">
+	<header id="masthead" class="site-header">
+		<nav class="navbar navbar-expand-sm navbar-light bg-light" role="navigation">
             <div class="container-fluid">
                 <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( get_bloginfo('name') ); ?>"><?php esc_html_e( get_bloginfo('name') ); ?></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary_navigation" aria-controls="primary_navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +43,11 @@
                 ) );
                 ?>
             </div>
-        </nav>
-    </header><!-- #masthead -->
+		</nav>
 
-    <div id="content" class="site-content">
+		<?php do_action('wpml_add_language_selector'); ?>
+
+		<?php if ( function_exists( 'bootstarter4_woocommerce_header_cart' ) ) { bootstarter4_woocommerce_header_cart(); } ?>
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">

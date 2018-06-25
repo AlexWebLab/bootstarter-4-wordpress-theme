@@ -118,7 +118,7 @@ remove_role( 'admin_editor' );
 $editor_role_set = get_role( 'editor' )->capabilities;
 add_role(
     'admin_editor',
-    __( 'Admin', 'mandarinmatrix' ),
+    __( 'Admin', 'bootstarter4' ),
 	$editor_role_set
 );
 $role = get_role( 'admin_editor' );
